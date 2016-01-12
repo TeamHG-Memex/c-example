@@ -1,0 +1,8 @@
+#include ""
+
+int main() {                                                                                                                                                                           
+    struct MemWriteData chunk = curl_exec();                                                                                                                                             
+    //parse();                                                                                                                                                                           
+    printf("%s", chunk.memory);                                                                                                                                                         
+    return 0;                                                                                                                                                                                
+}

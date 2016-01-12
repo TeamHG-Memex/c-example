@@ -1,0 +1,20 @@
+COMPILER=gcc
+CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG $(OPTFLAGS)
+LIBS=-lcurl $(OPTLIBS)
+SRCDIR=src
+
+all: basic_curl.o curlex regex
+
+#callback.o: $(SRCDIR)/dbg.h $(SRCDIR)/basic_curl.h#
+#	$(COMPILER) $(CFLAGS) -fPIC -c $(SRCDIR)/callback.c $(LIBS)
+
+basic_curl.o: $(SRCDIR)/dbg.h $(SRCDIR)/basic_curl.h
+	$(COMPILER) $(CFLAGS) -fPIC -c $(SRCDIR)/basic_curl.c $(LIBS)
+
+curlex: $(SRCDIR)/dbg.h $(SRCDIR)/basic_curl.h
+	$(COMPILER) $(CFLAGS) -o basic_curl basic_curl.o $(LIBS)
+
+clean:
+#	rm *.so
+	rm *.o
+	rm basic_curl
